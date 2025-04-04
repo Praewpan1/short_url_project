@@ -43,6 +43,9 @@ export default function ShortUrl() {
     };
   }, []);
 
+  const fullShortUrl = `${apiUrl}/${res.data.shortUrl}`;
+  setShortUrl(fullShortUrl);
+
   const handleSubmit = () => {
     if (!originalUrl.trim()) {
       alert("Please enter a valid URL.");
@@ -53,7 +56,8 @@ export default function ShortUrl() {
       .post(`${apiUrl}/api/short`, { originalUrl })
       .then((res) => {
         if (res.data && res.data.shortUrl) {
-          setShortUrl(res.data.shortUrl);
+          const fullShortUrl = `${apiUrl}/${res.data.shortUrl}`;
+          setShortUrl(fullShortUrl);
           setQrCode(res.data.qrCodeImg);
         } else {
           alert("Short URL creation failed.");
