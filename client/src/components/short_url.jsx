@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import "./short_url_module.css";
 
-const apiUrl = process.env.VITE_API_URL;
+const apiUrl = "https://short-url-project-f2r2.onrender.com";
 console.log(apiUrl);
 const socket = io(apiUrl);
 
