@@ -17,16 +17,15 @@ const BASE_URL = process.env.BASE_URL;// || "http://localhost:5000"
 
 const allowedOrigins = [
     //"http://localhost:3000",
-    "https://short-url-project-ebon.vercel.app/"  // ใส่ URL ของ Frontend เมื่อ Deploy
+    "https://short-url-project-ebon.vercel.app"  // ใส่ URL ของ Frontend เมื่อ Deploy
 ];
-
 const io = new Server(server, {
     cors: {
-        origin: allowedOrigins,
-        methods: ["GET", "POST"],
-        optionsSuccessStatus: 200
+      origin: allowedOrigins,
+      methods: ["GET", "POST"],
+      credentials: true
     }
-});
+  });
 
 app.use(cors({
     origin: allowedOrigins,
