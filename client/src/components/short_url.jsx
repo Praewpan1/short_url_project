@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import "./short_url_module.css";
 
-const apiUrl = process.env.REACT_APP_API_URL ;
+const apiUrl = process.env.REACT_APP_API_URL|| "http://localhost:5000" ;
 
 const socket = io(apiUrl);
 

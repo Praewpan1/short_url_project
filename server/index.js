@@ -112,6 +112,10 @@ app.get('/:shortUrl', async (req, res) => {
     }
 });
 
+app.get('/', (req, res) => {
+    res.send('✅ Short URL API is running!');
+  });
+
 app.get('/api/history', async (req, res) => {
     try {
         const urls = await Url.find();
