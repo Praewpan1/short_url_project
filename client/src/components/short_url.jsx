@@ -4,6 +4,7 @@ import { io } from "socket.io-client";
 import "./short_url_module.css";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+console.log(REACT_APP_API_URL);
 const socket = io(apiUrl);
 
 export default function ShortUrl() {
