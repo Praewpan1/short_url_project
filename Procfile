@@ -1,2 +1,2 @@
-web: npm run start --prefix server
-frontend: npm run start --prefix client
+web: npm install --prefix server && npm run start --prefix server
+frontend: npm install --prefix client && npm run build --prefix client
