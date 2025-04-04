@@ -4,6 +4,7 @@ import { io } from "socket.io-client";
 import "./short_url_module.css";
 
 const apiUrl = "https://short-url-project-f2r2.onrender.com";
+
 const socket = io(apiUrl);
 
 export default function ShortUrl() {
@@ -112,11 +113,11 @@ export default function ShortUrl() {
                   <td>{urlItem.originalUrl}</td>
                   <td>
                     <a
-                      href={urlItem.shortUrl}
+                      href={`${apiUrl}/${urlItem.shortUrl}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {urlItem.shortUrl}
+                      {`${apiUrl}/${urlItem.shortUrl}`}
                     </a>
                   </td>
                   <td className="clicks">{clicks[urlItem.shortUrl]}</td>
