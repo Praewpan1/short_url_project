@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import "./short_url_module.css";
 
-const socket = io("http://localhost:5000");
+const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const socket = io(apiUrl);
 
 export default function ShortUrl() {
   const [originalUrl, setOriginalUrl] = useState("");
@@ -14,7 +15,7 @@ export default function ShortUrl() {
 
   const fetchHistory = () => {
     axios
-      .get("http://localhost:5000/api/history")
+      .get(`${apiUrl}/api/history`)
       .then((res) => {
         setHistory(res.data);
         const clicksData = {};
@@ -48,7 +49,7 @@ export default function ShortUrl() {
     }
 
     axios
-      .post("http://localhost:5000/api/short", { originalUrl })
+      .post(`${apiUrl}/api/short`, { originalUrl })
       .then((res) => {
         if (res.data && res.data.shortUrl) {
           setShortUrl(res.data.shortUrl);
@@ -110,11 +111,11 @@ export default function ShortUrl() {
                   <td>{urlItem.originalUrl}</td>
                   <td>
                     <a
-                      href={`http://localhost:5000/${urlItem.shortUrl}`}
+                      href={`${apiUrl}/${urlItem.shortUrl}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {`http://localhost:5000/${urlItem.shortUrl}`}
+                      {`${apiUrl}/${urlItem.shortUrl}`}
                     </a>
                   </td>
                   <td className="clicks">{clicks[urlItem.shortUrl]}</td>
