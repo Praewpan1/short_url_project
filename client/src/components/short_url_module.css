@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #AFD7F6;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #219DFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .shortened-url {
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;     
+    text-align: center;     
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+ 
+  .qr-code img {
+    max-width: 150px;
+    margin-top: 10px;
+  }
+  
+
+  .shortened-url a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+  
+  .shortened-url a:hover {
+    text-decoration: underline;
+  }
+  
+  .history-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: separate; 
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+   
+  }
+  
+  .history-table th,
+  .history-table td {
+    padding: 12px;
+    border: 1px solid #bca8a8;
+    text-align: left;
+    word-break: break-word;
+  }
+  
+  .history-table th {
+    background-color: #a7d7f4;
+    text-align: center;
+  }
+  
+  .history-table td a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .history-table td a:hover {
+    text-decoration: underline;
+  }
+  
+  .history-table tr:hover {
+    background-color: #f9f9f9;
+  }
+  .history-table td.clicks {
+    text-align: center;
+  }
+  
+  .no-history {
+    text-align: center;
+    color: #888;
+  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
