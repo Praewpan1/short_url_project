@@ -53,8 +53,7 @@ export default function ShortUrl() {
       .post(`${apiUrl}/api/short`, { originalUrl })
       .then((res) => {
         if (res.data && res.data.shortUrl) {
-          const fullShortUrl = `${apiUrl}/${res.data.shortUrl}`;
-          setShortUrl(fullShortUrl);
+          setShortUrl(res.data.shortUrl);
           setQrCode(res.data.qrCodeImg);
           alert("Short URL created successfully!");
         } else {
@@ -114,11 +113,11 @@ export default function ShortUrl() {
                   <td>{urlItem.originalUrl}</td>
                   <td>
                     <a
-                      href={`${apiUrl}/${urlItem.shortUrl}`}
+                      href={urlItem.shortUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {`${apiUrl}/${urlItem.shortUrl}`}
+                      {urlItem.shortUrl}
                     </a>
                   </td>
                   <td className="clicks">{clicks[urlItem.shortUrl]}</td>
