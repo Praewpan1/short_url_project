@@ -13,10 +13,10 @@ const app = express();
 const server = http.createServer(app);
 
 const DATABASE_URL = process.env.DATABASE_URL;
-const BASE_URL = process.env.BASE_URL || "http://localhost:5000";;
+const BASE_URL = process.env.BASE_URL;// || "http://localhost:5000"
 
 const allowedOrigins = [
-    "http://localhost:3000",
+    //"http://localhost:3000",
     "https://short-url-project-ebon.vercel.app/"  // ใส่ URL ของ Frontend เมื่อ Deploy
 ];
 
