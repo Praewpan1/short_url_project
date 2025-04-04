@@ -12,18 +12,35 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
+const DATABASE_URL = process.env.DATABASE_URL;
+const BASE_URL = process.env.BASE_URL || "http://localhost:5000";;
+
+const allowedOrigins = [
+    "http://localhost:3000",
+    "https://your-frontend.onrender.com"  // ใส่ URL ของ Frontend เมื่อ Deploy
+];
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",  // ตั้งค่า origin ให้ตรงกับที่ React ทำงาน
-        methods: ["GET", "POST"]
+        origin: allowedOrigins,
+        methods: ["GET", "POST"],
+        optionsSuccessStatus: 200
     }
 });
-app.use(cors());
+
+app.use(cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST"]
+}));
+
+
 app.use(express.json());
 
 // Database setup
-mongoose.connect(process.env.DATABASE_URL)
+mongoose.connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
     .then(() => console.log("DB connected successfully"))
     .catch((err) => console.log("Failed to connect database", err));
 
@@ -42,24 +59,29 @@ app.post('/api/short', async (req, res) => {
 
         let url = await Url.findOne({ originalUrl });
 
-        if (!url) {
-            const shortUrl = nanoid(8);
-            const myUrl = `http://localhost:5000/${shortUrl}`;
+        if (url) {
+            const myUrl = `${BASE_URL}/${url.shortUrl}`;
             const qrCodeImg = await QRCode.toDataURL(myUrl);
-
-            url = new Url({ originalUrl, shortUrl, click: 0 });
-            await url.save();
+            return res.status(200).json({
+                message: "Url Already Exists",
+                shortUrl: myUrl,
+                qrCodeImg,
+                click: url.click,
+            });
         }
 
-        const myUrl = `http://localhost:5000/${url.shortUrl}`;
+        const shortUrl = nanoid(8);
+        const myUrl = `${BASE_URL}/${shortUrl}`;
         const qrCodeImg = await QRCode.toDataURL(myUrl);
-        const clickCount = url.click;
+
+        url = new Url({ originalUrl, shortUrl, click: 0 });
+        await url.save();
 
         return res.status(200).json({
             message: "Url Generated",
             shortUrl: myUrl,
             qrCodeImg,
-            click: clickCount,
+            click: 0,
         });
 
     } catch (error) {
@@ -67,6 +89,7 @@ app.post('/api/short', async (req, res) => {
         res.status(500).json({ error: "Server error" });
     }
 });
+
 
 app.get('/:shortUrl', async (req, res) => {
     try {
@@ -108,4 +131,6 @@ io.on('connection', (socket) => {
 
 
 
-server.listen(5000, () => console.log("server is running on 5000"));
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+
