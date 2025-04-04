@@ -1,4 +1,2 @@
-
-web: cd server && npm install && npm start
-
-client: cd client && npm install && npm run build
+web: npm run start --prefix server
+frontend: npm run start --prefix client
