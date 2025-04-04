@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import "./short_url_module.css";
 
-const apiUrl = process.env.REACT_APP_API_URL;
-console.log("API URL:", apiUrl);
+const apiUrl = process.env.VITE_API_URL;
+console.log(import.meta.env.VITE_API_URL);
 const socket = io(apiUrl);
 
 export default function ShortUrl() {
