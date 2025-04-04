@@ -43,14 +43,12 @@ export default function ShortUrl() {
     };
   }, []);
 
- 
-
   const handleSubmit = () => {
     if (!originalUrl.trim()) {
       alert("Please enter a valid URL.");
       return;
     }
-   
+
     axios
       .post(`${apiUrl}/api/short`, { originalUrl })
       .then((res) => {
@@ -58,6 +56,7 @@ export default function ShortUrl() {
           const fullShortUrl = `${apiUrl}/${res.data.shortUrl}`;
           setShortUrl(fullShortUrl);
           setQrCode(res.data.qrCodeImg);
+          alert("Short URL created successfully!");
         } else {
           alert("Short URL creation failed.");
         }
