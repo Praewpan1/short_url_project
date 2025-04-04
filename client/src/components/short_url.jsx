@@ -43,15 +43,14 @@ export default function ShortUrl() {
     };
   }, []);
 
-  const fullShortUrl = `${apiUrl}/${res.data.shortUrl}`;
-  setShortUrl(fullShortUrl);
+ 
 
   const handleSubmit = () => {
     if (!originalUrl.trim()) {
       alert("Please enter a valid URL.");
       return;
     }
-
+   
     axios
       .post(`${apiUrl}/api/short`, { originalUrl })
       .then((res) => {
