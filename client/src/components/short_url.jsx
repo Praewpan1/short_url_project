@@ -82,14 +82,14 @@ export default function ShortUrl() {
           Shorten URL
         </button>
       </div>
-      {console.log("shortUrl ที่จะโชว์:", shortUrl)}
+      
       {shortUrl && (
         <div className="shortened-url">
           <p>Shortened URL:</p>
           <a href={shortUrl} target="_blank" rel="noopener noreferrer">
             
             {shortUrl}
-            
+            {console.log("shortUrl ที่จะโชว์:", shortUrl)}
           </a>
           <div className="qr-code">
             {qrCode && <img src={qrCode} alt="Generated QR Code" />}
