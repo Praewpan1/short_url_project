@@ -70,7 +70,7 @@ app.post('/api/short', async (req, res) => {
         }
 
         const shortUrl = nanoid(8);
-        const cleanBase = BASE_URL.replace(/\/+$/, ''); // ตัด / ท้ายออก
+        const cleanBase = BASE_URL.replace(/\/+$/, '');
         const myUrl = `${cleanBase}/${shortUrl}`;
         const qrCodeImg = await QRCode.toDataURL(myUrl);
 
