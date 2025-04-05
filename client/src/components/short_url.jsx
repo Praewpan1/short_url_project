@@ -50,7 +50,7 @@ export default function ShortUrl() {
     }
 
     axios
-      .post(`${apiUrl}api/short`, { originalUrl })//แก้ทับ
+      .post(`${apiUrl}/api/short`, { originalUrl })
       .then((res) => {
         if (res.data && res.data.shortUrl) {
           setShortUrl(res.data.shortUrl);
