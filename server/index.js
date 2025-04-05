@@ -16,16 +16,15 @@ const DATABASE_URL = process.env.DATABASE_URL;
 const BASE_URL = process.env.BASE_URL;
 
 const allowedOrigins = [
-   
-    "https://short-url-project-ebon.vercel.app"  
+    "https://short-url-project-ebon.vercel.app"
 ];
 const io = new Server(server, {
     cors: {
-      origin: allowedOrigins,
-      methods: ["GET", "POST"],
-      credentials: true
+        origin: allowedOrigins,
+        methods: ["GET", "POST"],
+        credentials: true
     }
-  });
+});
 
 app.use(cors({
     origin: allowedOrigins,
@@ -71,7 +70,8 @@ app.post('/api/short', async (req, res) => {
         }
 
         const shortUrl = nanoid(8);
-        const myUrl = `${BASE_URL}/${shortUrl}`;
+        const cleanBase = BASE_URL.replace(/\/+$/, ''); // ตัด / ท้ายออก
+        const myUrl = `${cleanBase}/${shortUrl}`;
         const qrCodeImg = await QRCode.toDataURL(myUrl);
 
         url = new Url({ originalUrl, shortUrl, click: 0 });
@@ -114,7 +114,7 @@ app.get('/:shortUrl', async (req, res) => {
 
 app.get('/', (req, res) => {
     res.send('✅ Short URL API is running!');
-  });
+});
 
 app.get('/api/history', async (req, res) => {
     try {
