@@ -53,6 +53,7 @@ export default function ShortUrl() {
       .post(`${apiUrl}/api/short`, { originalUrl })
       .then((res) => {
         if (res.data && res.data.shortUrl) {
+          const cleanedShortUrl = res.data.shortUrl.replace(/^\/+/, "");
           setShortUrl(res.data.shortUrl);
           setQrCode(res.data.qrCodeImg);
         } else {
