@@ -78,16 +78,32 @@ export default function ShortUrl() {
           type="text"
           placeholder="Enter URL"
         />
+        <button
+          type="button"
+          className="paste-btn"
+          onClick={async () => {
+            try {
+              const text = await navigator.clipboard.readText();
+              setOriginalUrl(text);
+            } catch (err) {
+              alert(
+                "Failed to read clipboard. Please allow clipboard permission."
+              );
+              console.error(err);
+            }
+          }}
+        >
+          paste
+        </button>
         <button onClick={handleSubmit} type="button" className="shorten-btn">
           Shorten URL
         </button>
       </div>
-      
+
       {shortUrl && (
         <div className="shortened-url">
           <p>Shortened URL:</p>
           <a href={shortUrl} target="_blank" rel="noopener noreferrer">
-            
             {shortUrl}
             {console.log("shortUrl ที่จะโชว์:", shortUrl)}
           </a>

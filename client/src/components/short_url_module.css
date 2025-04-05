@@ -27,7 +27,34 @@ body {
     border-radius: 5px;
     font-size: 1rem;
   }
+  .input-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
   
+  .input-container input {
+    flex: 1;
+    padding: 8px;
+    font-size: 1rem;
+  }
+  
+  .paste-btn,
+  .shorten-btn {
+    padding: 8px 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .paste-btn:hover,
+  .shorten-btn:hover {
+    background-color: #0056b3;
+  }
   button {
     width: 100%;
     padding: 10px;
