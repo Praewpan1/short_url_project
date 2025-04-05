@@ -50,12 +50,11 @@ export default function ShortUrl() {
     }
 
     axios
-      .post(`${apiUrl}/api/short`, { originalUrl })
+      .post(`${apiUrl}api/short`, { originalUrl })//แก้ทับ
       .then((res) => {
         if (res.data && res.data.shortUrl) {
           setShortUrl(res.data.shortUrl);
           setQrCode(res.data.qrCodeImg);
-          alert("Short URL created successfully!");
         } else {
           alert("Short URL creation failed.");
         }
