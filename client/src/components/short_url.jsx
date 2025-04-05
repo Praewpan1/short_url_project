@@ -112,11 +112,11 @@ export default function ShortUrl() {
                   <td>{urlItem.originalUrl}</td>
                   <td>
                     <a
-                      href={`${apiUrl}/${urlItem.shortUrl}`}
+                      href={`${apiUrl}${urlItem.shortUrl}`}//
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {`${apiUrl}/${urlItem.shortUrl}`}
+                      {`${apiUrl}${urlItem.shortUrl}`}//
                     </a>
                   </td>
                   <td className="clicks">{clicks[urlItem.shortUrl]}</td>
